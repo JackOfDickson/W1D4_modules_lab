@@ -5,7 +5,7 @@ from modules.input import *
 
 while (True):
     print_menu()
-    option = input("Select an option 1, 2, 3, 4, 5, display (m)enu or (q)uit: ")
+    option = get_input()
     
     if option.lower() == 'q':
         break
@@ -16,7 +16,7 @@ while (True):
     elif option == '3':
         print_list(get_tasks_by_status(tasks, "Done"))
     elif option == '4':
-        description = input("Enter task description to search for: ")
+        description = get_task()
         task = get_task_with_description(tasks, description)
         if task is not None:
             mark_task_complete(task)
@@ -24,14 +24,14 @@ while (True):
         else:
             print("Task not found")
     elif option == '5':
-        time = int(input("Enter task duration: "))
+        time = get_time()
         print_list(get_tasks_taking_at_least(tasks, time))
     elif option == '6':
-        description = input("Enter task description to search for: ")
+        description = get_task()
         print(get_task_with_description(tasks, description))
     elif option == '7':
-        description = input("Enter description: ")
-        time_taken = int(input("Enter time taken: "))
+        description = get_task()
+        time_taken = get_time()
         task = create_task(description, time_taken)
         tasks.append(task)
     else:
